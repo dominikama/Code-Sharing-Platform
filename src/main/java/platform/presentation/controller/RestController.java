@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 import platform.business.module.Code;
 import platform.business.service.CodeSharingService;
 
@@ -109,10 +110,12 @@ public class RestController {
 
 
     @GetMapping("/")
-    public String welcomePage(HttpServletResponse response, Model model) {
+    public ModelAndView welcomePage(HttpServletResponse response, Model model) {
         response.setHeader("Content-Type", "text/html");
         model.addAttribute("code_snippet", code.getLatest());
-        return "welcome";
+        ModelAndView view = new ModelAndView();
+        view.setViewName("welcome");
+        return view;
     }
 
     @GetMapping("/more")
