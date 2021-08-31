@@ -20,8 +20,8 @@ import java.util.TreeMap;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@Controller
 
+@org.springframework.web.bind.annotation.RestController
 public class RestController {
 
     @Autowired
@@ -106,7 +106,7 @@ public class RestController {
     public List<Code> latest() {
         return code.getLatest();
     }
-    
+
 
     @GetMapping("/")
     public String welcomePage(HttpServletResponse response, Model model) {
