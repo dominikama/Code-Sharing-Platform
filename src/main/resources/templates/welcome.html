@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+    <style>
+        .date {
+        font-style:italic;
+        font-size:15px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Code Sharing Platform</a>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/code/new}" aria-current="page" aria-pressed="true">
+                        New snippet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/getAll}" aria-current="page" aria-pressed="true">
+                            View snippets</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/more}" aria-current="page" aria-pressed="true">
+                           More</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../static/images/code.png" th:src="@{images/code.png}" width="200" height="100">
+        <h1 class="display-5 fw-bold">About the project</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead">Welcome to the code sharing platform. Here you can post new snippets.
+                There are some strict rules:
+                To post a snippet, click "Add new snippet". You'll be asked to fill in the form.
+                You can set time, and view restriction - if they are triggered your code snippet will be deleted
+                from the database. If you don't want your snippet to have any restrictions you have to type 0 in those places.
+                To view a single code snippet you've got to know its unique token and type it in the URL.
+                There are two possible formats in which you can access and send data: HTML or JSON.
+                To get more information about REST API and Web interface visit the tabs above.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Last uploaded snippets</h1>
+            <p class="lead">Underneath you can view 5 latest snippets without time and view restrictions.
+            Snippets which have those restrictions are treated like private and are available only by their tokens.</p>
+            <div th:each="code: ${code_snippet}" class="col-md-8 fs-4">
+                <span th:text="${code.date}" class="date"></span>
+                <pre ><code th:text="${code.code}"></code></pre>
+            </div>
+
+            <a th:href="@{/getAll}" class="btn btn-primary" type="button">View all</a>
+        </div>
+    </div>
+    </div>
+
+</main>
+</body>
+</html>

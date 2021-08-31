@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+    <style>
+        .title {
+        margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">
+        <h1 class="display-1">Detailed information</h1>
+        <p class="lead">Here you can get more information about REST and web endpoints.</p>
+        <a class="btn btn-warning btn-lg me-2"
+           th:href="@{/}">Back Home</a>
+    </div>
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-dark rounded-3">
+                <h2>REST API</h2>
+                <p>There are 3 REST endpoints available:
+                <br>
+                <ul>
+                    <li>GET: api/code/{uuid} - allows you to see a code snippet by typing it's unique token</li>
+                    <li>GET: api/code/latest - allows you to see 5 latest code snippets without time and view restrictions</li>
+                    <li>POST: api/code/new - allows you to post a new code snippet</li>
+                </ul>
+                <br>
+                All data should be send and will be received in JSON format.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>WEB</h2>
+                <p>There are 5 web endpoints available:
+                    <br>
+                <ul>
+                    <li>/code/{uuid} - allows you to see a code snippet by typing it's unique token</li>
+                    <li> <a th:href="@{/}">/</a>- allows you to see a home page with 5 latest code snippets</li>
+                    <li> <a th:href="@{code/new}">/code/new</a> - allows you to post a new code snippet</li>
+                    <li> <a th:href="@{/getAll}">/getAll</a> - allows you to see all code snippets without time and view restrictions</li>
+                    <li> <a th:href="@{/more}">/more</a> - this is a link to this page</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

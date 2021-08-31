@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script type = "text/javascript">
+        function send() {
+            let object = {
+                "code": document.getElementById("code_snippet").value,
+                "time": document.getElementById("time_restriction").value,
+                "views": document.getElementById("views_restriction").value
+            };
+
+            let json = JSON.stringify(object);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", '/api/code/new', false)
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.send(json);
+
+            if (xhr.status == 200) {
+              alert("Success!");
+            }
+        }
+    </script>
+  <title>Code Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        .form-floating {
+        width:34%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-floating">
+    <div class="mb-3">
+        <label for="code_snippet" class="form-label">Code snippet:</label>
+        <textarea class="form-control" id="code_snippet" rows="3">//write your code here
+            </textarea>
+    </div>
+
+    <div class="mb-3">
+          <label for="time_restriction" class="form-label">Time Restriction</label>
+            <input id="time_restriction" class="form-control" placeholder="You must type a number, 0 if no restriction"
+                   type="text"/>
+
+    </div>
+
+    <div class="mb-3">
+          <label for="views_restriction" class="form-label">View Restriction</label>
+            <input id="views_restriction" class="form-control" placeholder="You must type a number, 0 if no restriction"
+                   type="text"/>
+
+    </div>
+    <form>
+        <button id="send_snippet" type="submit" class="btn btn-primary" onclick="send()">Submit</button>
+        <a th:href="@{/}" class="btn btn-primary" type="button">Back home</a>
+    </form>
+    </div>
+</div>
+
+</body>
+</html>
