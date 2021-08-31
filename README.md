@@ -10,36 +10,34 @@ This project was designed for sharing code snippets. It has two possible restric
 
 Two type of interfaces are implemented: API and web interface.
 
-API interface contains mappings:
-
-GET:
-
-- /api/code/{uuid} : it presents code snippet with unique identifier in JSON format, uuid in the mapping is a path variable.
-
-- /api/code/latest : it shows up to 10 most recent snippets without any restrictions.
-
-POST:
-
-- /api/code/new : it allows to create a new code snippet after sending code, time and view restriction in JSON format.
-
 Web interface contains mappings:
 
 GET:
 
-- /code/{uuid} : shows a code snippet with unique identifier on the web page
+- https://serene-stream-51733.herokuapp.com/code/{uuid} : shows a code snippet with unique identifier on the web page, uuid should be replaced with token value
 
-- /code/new : shows a web page on which code, time and view restriction should be inputted, after that data is send to JavaScript function which which converts it to JSON and call POST method "api/code/new".
+- https://serene-stream-51733.herokuapp.com/code/new : shows a web page on which code, time and view restriction should be inputted, after that data is send to JavaScript function which which converts it to JSON and call POST method "api/code/new".
 
-- /code/latest : shows a web page with up to 10 latest snippets without restrictions.
+- https://serene-stream-51733.herokuapp.com/getAll : all available snippets without restricions
+- https://serene-stream-51733.herokuapp.com/more - more information about the project
+- https://serene-stream-51733.herokuapp.com/ - home page
 
-All web pages are shown with style designed in style.css
+All web pages are designed with bootstrap.
+
+API interface contains mappings:
+
+GET:
+
+- https://serene-stream-51733.herokuapp.com/api/code/{uuid} : it presents code snippet with unique identifier in JSON format, uuid in the URL is a path variable and shoul be replaced with token value.
+
+- https://serene-stream-51733.herokuapp.com/api/code/latest : it shows up to 10 most recent snippets without any restrictions.
+
+POST:
+
+- https://serene-stream-51733.herokuapp.com/api/code/new : it allows to post a new code snippet after sending code, time and view restriction in JSON format.
 
 RUNNING PROGRAM:
-
-Unfortunately to run this project you've got to download and run it locally. This problem is caused by H2 database not being supported by Heroku. Sorry for the inconvenience, further improvements are planned.
-
-Applications port: 8889
-
+The program is now available on heroku: https://serene-stream-51733.herokuapp.com
 Format for posting a code snippet via api/code/new:
 
 {
@@ -54,6 +52,9 @@ Format for posting a code snippet via api/code/new:
 
 If you do not want to set any restrictions while creating a snippet type "0" in those fields.
 
-DOCUMENTATION:
-
-To get more information about project structure open "program_structure".
+RELESE NOTES:
+This is version 2 of the project. Crucial changes:
+- PostgreSql instead of H2 database
+- Switched from gradle to maven
+- switched from Freemarker to Thymeleaf 
+- Deletetd CodeList interface and implementation
