@@ -119,8 +119,10 @@ public class RestController {
     }
 
     @GetMapping("/more")
-    public String moreInformation() {
-        return "more";
+    public ModelAndView moreInformation() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("more");
+        return view;
     }
 
     @GetMapping("/getAll")
