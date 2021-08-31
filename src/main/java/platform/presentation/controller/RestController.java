@@ -126,9 +126,11 @@ public class RestController {
     }
 
     @GetMapping("/getAll")
-    public String getAll(Model model) {
+    public ModelAndView getAll(Model model) {
         model.addAttribute("snippets",code.findAll());
-        return "snippets-list";
+        ModelAndView view = new ModelAndView();
+        view.setViewName("snippets-list");
+        return view;
     }
 
 
